@@ -32,6 +32,10 @@ header{
         stroke-linecap: round;
         stroke-linejoin: round;
         fill: none;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
     }
     .featherHome {
 
@@ -68,7 +72,9 @@ main{
         flex-direction: column;
         z-index: 180;
 
-        overflow: scroll;
+        
+        overflow-y: scroll;
+        overflow-x: hidden;
 
 
         transition: left 0.3s;
@@ -76,6 +82,10 @@ main{
         //Selectionne la navbar si elle est aussi de la class mobileHide
         &.mobileHide{
             left:-190px;
+
+            @media(min-width: 768px){
+                left: 0px;
+            }
         }
 
 
@@ -89,6 +99,11 @@ main{
 
         width: 100%;
 
+        @media (min-width : 768px){
+            width: calc(100% - 180px);
+            position: relative;
+            left: 180px;
+        }
 
         #miniMenu{
             grid-row: 0;
@@ -114,7 +129,15 @@ main{
 
             img{
                 width: 100% ;
+                @media (min-width : 768px){
+                    padding : 10px 10px 10px 10px;
+                }
                 
+            }
+
+            @media (min-width : 768px){
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
 

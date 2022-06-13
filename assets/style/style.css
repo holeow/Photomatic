@@ -29,6 +29,11 @@ header .featherMenu {
   stroke-linejoin: round;
   fill: none;
 }
+@media (min-width: 768px) {
+  header .featherMenu {
+    display: none;
+  }
+}
 header .featherHome {
   position: absolute;
   top: calc(50% - 32px);
@@ -58,11 +63,17 @@ main #leftNavBar {
   display: flex;
   flex-direction: column;
   z-index: 180;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   transition: left 0.3s;
 }
 main #leftNavBar.mobileHide {
   left: -190px;
+}
+@media (min-width: 768px) {
+  main #leftNavBar.mobileHide {
+    left: 0px;
+  }
 }
 main #leftNavBar hr {
   border: none;
@@ -70,6 +81,13 @@ main #leftNavBar hr {
 }
 main #mainContent {
   width: 100%;
+}
+@media (min-width: 768px) {
+  main #mainContent {
+    width: calc(100% - 180px);
+    position: relative;
+    left: 180px;
+  }
 }
 main #mainContent #miniMenu {
   grid-row: 0;
@@ -93,6 +111,17 @@ main #mainContent #images {
 }
 main #mainContent #images img {
   width: 100%;
+}
+@media (min-width: 768px) {
+  main #mainContent #images img {
+    padding: 10px 10px 10px 10px;
+  }
+}
+@media (min-width: 768px) {
+  main #mainContent #images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 main #mainContent #folderName {
   position: absolute;
