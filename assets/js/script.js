@@ -2,6 +2,10 @@
  * Un dossier conteneur d'images
  */
 class Folder {
+
+
+    static currentFolder = null;
+
     /**
      * 
      * @param {string} name le nom du dossier
@@ -23,7 +27,7 @@ class Folder {
      * @param {number} height 
      */
     generatePhotos(amount, width, height) {
-        
+
         for (var i = 0; i < amount; i++) {
             let p = new Photo(
                 Math.trunc(Math.random() * 5000),
@@ -51,6 +55,7 @@ class Folder {
      * Fais apparaitre les images sur la page et mets en place le menu lateral
      */
     openFolder() {
+        Folder.currentFolder = this;
         let h2 = document.querySelector("#folderName");
         h2.textContent = this.name;
         let leftNavBar = document.querySelector("#leftNavBar");
@@ -125,7 +130,7 @@ class Photo {
      */
     get link() {
 
-        if(this.forceImg!= undefined && this.forceImg!= null)
+        if (this.forceImg != undefined && this.forceImg != null)
             return this.forceImg;
 
         return `https://loremflickr.com/${this.width}/${this.height}/${this.subject}/all?lock=${this.seed}`
@@ -152,11 +157,11 @@ let boat = new Folder("Boats", "boat", mainFolder);
 let eiffel = new Folder("Eiffel tower", "eiffel,tower", mainFolder);
 let dogs = new Folder("Dogs", "dog", mainFolder);
 
-let whiteDogs = new Folder("white ones","dog,white",dogs);
+let whiteDogs = new Folder("white ones", "dog,white", dogs);
 
 dogs.folders.push(whiteDogs);
 
-whiteDogs.generatePhotos(12,480,270);
+whiteDogs.generatePhotos(12, 480, 270);
 
 boat.generatePhotos(5, 480, 270);
 eiffel.generatePhotos(5, 480, 270);
@@ -172,8 +177,8 @@ mainFolder.openFolder();
 //? end of test folders
 
 //? Gestion des boutons
-document.querySelector("#HomeButton").addEventListener("click", () =>{
-mainFolder.openFolder();
+document.querySelector("#HomeButton").addEventListener("click", () => {
+    mainFolder.openFolder();
 });
 
 
@@ -181,7 +186,92 @@ let featherMenu = document.querySelector(".featherMenu");
 let leftNavBar = document.querySelector("#leftNavBar");
 
 featherMenu.addEventListener("click", menuClick);
+
+let featherPlus = document.querySelector(".blueOne .featherfolderright");
+
+featherPlus.addEventListener("click", createFolderClick)
+
+let folderCreator = document.querySelector("#folderCreator");
+
+folderCreator.querySelector(".buttons .cancel").addEventListener("click", closeAllWindows);
+
+folderCreator.querySelector(".buttons .okay").addEventListener("click", okayCreateFolder);
+
+folderCreator.querySelector("input").addEventListener("keyup", event => {
+    if (event.key === "Enter") okayCreateFolder();
+})
+
+let uploadbutton = document.querySelector("#featherUpload");
+uploadbutton.addEventListener("click", openUploadWindow);
+
+let imageUploader = document.querySelector("#imageUploader");
+
+imageUploader.querySelector(".buttons .cancel").addEventListener("click", closeAllWindows);
+imageUploader.querySelector(".buttons .okay").addEventListener("click", okayUploadImage);
+
+imageUploader.querySelector("input").addEventListener("keyup", event => {
+    if (event.key === "Enter") okayUploadImage();
+});
+
+
+
 //? Fin de la gestion des boutons
+
+
+
+function okayUploadImage() {
+    let photo = new Photo(0, 0, 0, null, imageUploader.querySelector("input").value);
+    Folder.currentFolder.photos.push(photo);
+    Folder.currentFolder.displayImages();
+    closeAllWindows();
+}
+
+function closeAllWindows() {
+    let windows = document.querySelectorAll(".inWindow");
+
+    for (const win of windows) {
+        win.classList.toggle("isHidden", true);
+    }
+}
+
+function openUploadWindow(event) {
+    event.preventDefault();
+    closeAllWindows();
+    let input = imageUploader.querySelector("input");
+    input.value = "";
+    imageUploader.classList.toggle("isHidden");
+    input.focus();
+
+
+}
+
+function okayCreateFolder() {
+
+
+    let input = folderCreator.querySelector("input").value;
+
+    if (input.length > 0) {
+
+        let currentFolder = Folder.currentFolder;
+        let folder = new Folder(input, null, currentFolder);
+
+        currentFolder.folders.push(folder);
+        currentFolder.openFolder();
+        createFolderClick();
+        closeAllWindows();
+    }
+
+}
+
+function createFolderClick() {
+    closeAllWindows();
+    folderCreator.classList.toggle("isHidden");
+    folderCreator.querySelector("input").value = "";
+    folderCreator.querySelector("input").focus();
+
+}
+
+
 
 /**
  * Ouvre le menu
