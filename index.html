@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+ <link rel="stylesheet" href="/assets/style/style.css">
+ <script src="./assets/js/script.js" defer></script>
+ 
+ <!-- https://feathericons.com/ -->
+ <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <!-- Les feather icons sont remplacées en bas de la page dans la script -->
+        <i data-feather="home" class="featherHome" id="HomeButton"></i>
+        <i data-feather='menu' class='featherMenu'></i>
+    </header>
+    <main>
+        <!--?? LEFT NAV BAR  -->
+        <aside id="leftNavBar" class="mobileHide">
+
+            <!-- ? folder panel -->
+            <!-- Blue folder panel est seulement modifié par le javascript. Il n'est pas créé. -->
+            <div class="folderPanel blueOne">
+                <i data-feather='folder' class='featherfolder' stroke="black" fill="blue"></i>
+                <div class="textDiv">
+                    <p>FolderName</p>
+                </div>
+                <i data-feather='folder-plus' class='featherfolderright'></i>
+            </div>
+            <!-- ?end of folder panel -->
+
+
+        </aside>
+        <!-- ? end of left nav bar -->
+        <div id="mainContent">
+            <h2 id="folderName">Hello</h2>
+            <div id="miniMenu"></div>
+            <div id="images">
+
+            
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    /* Rempalce les feather icons. */
+    feather.replace();
+
+    </script>
+</html>
