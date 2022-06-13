@@ -100,6 +100,17 @@ main #mainContent #miniMenu {
   border-radius: 13px;
   z-index: 10;
 }
+main #mainContent #miniMenu #featherUpload {
+  cursor: pointer;
+  height: 75%;
+  position: relative;
+  top: 12.5%;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
 main #mainContent #images {
   position: relative;
   top: 40px;
@@ -115,6 +126,7 @@ main #mainContent #images img {
 @media (min-width: 768px) {
   main #mainContent #images img {
     padding: 10px 10px 10px 10px;
+    max-width: 450px;
   }
 }
 @media (min-width: 768px) {
@@ -127,6 +139,39 @@ main #mainContent #folderName {
   position: absolute;
   left: 5%;
   white-space: nowrap;
+}
+main #mainContent .inWindow {
+  position: fixed;
+  top: 50%;
+  width: 70vw;
+  height: 30vh;
+  left: 15vw;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 999;
+  border: black 2px solid;
+}
+main #mainContent .inWindow input {
+  width: 80%;
+  position: relative;
+  left: 10%;
+}
+main #mainContent .inWindow p {
+  position: relative;
+  left: 10%;
+}
+main #mainContent .inWindow .windowHeader {
+  background-color: grey;
+  justify-self: flex-start;
+}
+main #mainContent .inWindow .buttons {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.isHidden {
+  display: none;
 }
 
 .folderPanel {
@@ -157,4 +202,5 @@ main #mainContent #folderName {
 }
 .folderPanel .featherfolderright {
   margin-right: 4px;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

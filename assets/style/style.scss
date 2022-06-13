@@ -115,6 +115,21 @@ main{
             background-color: #CCCCCCDD;
             border-radius: 13px;
             z-index: 10;
+
+
+            #featherUpload {
+           
+            cursor: pointer;
+
+            height: 75%;
+            position: relative;
+            top: 12.5%;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            }
         }
 
         #images{
@@ -131,6 +146,7 @@ main{
                 width: 100% ;
                 @media (min-width : 768px){
                     padding : 10px 10px 10px 10px;
+                    max-width: 450px;
                 }
                 
             }
@@ -148,9 +164,47 @@ main{
             
         }
 
+        .inWindow{
+            position: fixed;
+            top : 50%;
+            width: 70vw;
+            height: 30vh;
+            left :15vw;
+            background-color: white;
+            border-radius: 5px;
+            z-index: 999;
+            
+            border: black 2px solid;
+            
+            input{
+                width: 80%;
+                position: relative;
+                left: 10%;
+            }
+            p{
+                position: relative;
+                left: 10% ;
+            }
+
+            .windowHeader{
+                background-color: grey;
+                justify-self: flex-start;
+            }
+            .buttons{
+              position: absolute;
+              bottom: 0;
+              right: 10px;
+
+            }
+        }
+
     }
 }
 
+
+.isHidden{
+    display: none;
+}
 .folderPanel{
     display: flex;
     align-items: center;
@@ -184,6 +238,7 @@ main{
 
     .featherfolderright{
         margin-right: 4px;
+        cursor: pointer;
     }
 
 }
