@@ -33,7 +33,7 @@ header{
         stroke-linejoin: round;
         fill: none;
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
             display: none;
         }
     }
@@ -83,7 +83,7 @@ main{
         &.mobileHide{
             left:-190px;
 
-            @media(min-width: 768px){
+            @media(min-width: 769px){
                 left: 0px;
             }
         }
@@ -99,7 +99,7 @@ main{
 
         width: 100%;
 
-        @media (min-width : 768px){
+        @media (min-width : 769px){
             width: calc(100% - 180px);
             position: relative;
             left: 180px;
@@ -130,6 +130,20 @@ main{
             stroke-linejoin: round;
             fill: none;
             }
+            
+            #featherput {
+           
+                cursor: pointer;
+    
+                height: 75%;
+                position: relative;
+                top: 12.5%;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                fill: none;
+                }
         }
 
         #images{
@@ -151,10 +165,7 @@ main{
                     opacity: 0;
                     transition: opacity 0.5s;
 
-                    @media(max-width : 767px){
-                        display: none;
-
-                    }
+                    
                 }
                 .featherdeleteimage {
                 position: absolute;
@@ -168,6 +179,9 @@ main{
                     stroke-linejoin: round;
                     fill: none;
                     cursor: pointer;
+                    z-index: -1;
+                    pointer-events: none;
+                    
                 }
                 .featherdeleteimage2 {
                     position: absolute;
@@ -180,6 +194,9 @@ main{
                         stroke-linecap: round;
                         stroke-linejoin: round;
                         fill: none;
+                        z-index: -1;
+
+                       
                     }
 
                 .feathermaximizeimage {
@@ -194,6 +211,7 @@ main{
                         stroke-linejoin: round;
                         fill: none;
                         cursor: pointer;
+                        z-index: -1;
                     }
                     .feathermaximizeimage2 {
                         position: absolute;
@@ -206,6 +224,8 @@ main{
                             stroke-linecap: round;
                             stroke-linejoin: round;
                             fill: none;
+                            z-index: -1;
+
                         }
                 .feathermoveimage {
                     position: absolute;
@@ -219,6 +239,8 @@ main{
                         stroke-linejoin: round;
                         fill: none;
                         cursor: pointer;
+
+                        z-index: -1;
                     }
 
                     .feathermoveimage2 {
@@ -232,27 +254,57 @@ main{
                             stroke-linecap: round;
                             stroke-linejoin: round;
                             fill: none;
+                            z-index: -1;
                         }
                 img{
                     width: 100% ;
-                    @media (min-width : 768px){
+                    opacity: 1;
+                    
+                    @media (min-width : 769px){
                         padding : 10px 10px 10px 10px;
                         max-width: 450px;
                     }
                     
+                    
+                }
+
+                &.selectedformove{
+                    background-color: gray;
+
+                    img{
+                        opacity: 0.5;
+                    }
+                }
+
+                &.imageclicked{
+                    @media (max-width: 768px){
+                        .appearonimghover {
+                            opacity: 1;
+                            display: block;
+                            z-index: 1;
+                            pointer-events: all;
+                            }
+                    }
                 }
             }
 
-            .imgcontainer:hover, .imgcontainer:active{
-                .appearonimghover {
-                    opacity: 1;
-                    display: block;
-                    }
+            .imgcontainer:hover{
+                @media (min-width: 769px) {
+                    .appearonimghover {
+                        opacity: 1;
+                        display: block;
+                        z-index: 1;
+                        pointer-events: all;
+                        }
+                }
+                
+                    
             }
+            
 
            
 
-            @media (min-width : 768px){
+            @media (min-width : 769px){
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }

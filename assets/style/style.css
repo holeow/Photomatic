@@ -29,7 +29,7 @@ header .featherMenu {
   stroke-linejoin: round;
   fill: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   header .featherMenu {
     display: none;
   }
@@ -70,7 +70,7 @@ main #leftNavBar {
 main #leftNavBar.mobileHide {
   left: -190px;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   main #leftNavBar.mobileHide {
     left: 0px;
   }
@@ -82,7 +82,7 @@ main #leftNavBar hr {
 main #mainContent {
   width: 100%;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   main #mainContent {
     width: calc(100% - 180px);
     position: relative;
@@ -111,6 +111,17 @@ main #mainContent #miniMenu #featherUpload {
   stroke-linejoin: round;
   fill: none;
 }
+main #mainContent #miniMenu #featherput {
+  cursor: pointer;
+  height: 75%;
+  position: relative;
+  top: 12.5%;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
 main #mainContent #images {
   position: relative;
   top: 40px;
@@ -127,11 +138,6 @@ main #mainContent #images .imgcontainer .appearonimghover {
   opacity: 0;
   transition: opacity 0.5s;
 }
-@media (max-width: 767px) {
-  main #mainContent #images .imgcontainer .appearonimghover {
-    display: none;
-  }
-}
 main #mainContent #images .imgcontainer .featherdeleteimage {
   position: absolute;
   right: 24px;
@@ -144,6 +150,8 @@ main #mainContent #images .imgcontainer .featherdeleteimage {
   stroke-linejoin: round;
   fill: none;
   cursor: pointer;
+  z-index: -1;
+  pointer-events: none;
 }
 main #mainContent #images .imgcontainer .featherdeleteimage2 {
   position: absolute;
@@ -156,6 +164,7 @@ main #mainContent #images .imgcontainer .featherdeleteimage2 {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+  z-index: -1;
 }
 main #mainContent #images .imgcontainer .feathermaximizeimage {
   position: absolute;
@@ -169,6 +178,7 @@ main #mainContent #images .imgcontainer .feathermaximizeimage {
   stroke-linejoin: round;
   fill: none;
   cursor: pointer;
+  z-index: -1;
 }
 main #mainContent #images .imgcontainer .feathermaximizeimage2 {
   position: absolute;
@@ -181,6 +191,7 @@ main #mainContent #images .imgcontainer .feathermaximizeimage2 {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+  z-index: -1;
 }
 main #mainContent #images .imgcontainer .feathermoveimage {
   position: absolute;
@@ -194,6 +205,7 @@ main #mainContent #images .imgcontainer .feathermoveimage {
   stroke-linejoin: round;
   fill: none;
   cursor: pointer;
+  z-index: -1;
 }
 main #mainContent #images .imgcontainer .feathermoveimage2 {
   position: absolute;
@@ -206,21 +218,41 @@ main #mainContent #images .imgcontainer .feathermoveimage2 {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+  z-index: -1;
 }
 main #mainContent #images .imgcontainer img {
   width: 100%;
+  opacity: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   main #mainContent #images .imgcontainer img {
     padding: 10px 10px 10px 10px;
     max-width: 450px;
   }
 }
-main #mainContent #images .imgcontainer:hover .appearonimghover, main #mainContent #images .imgcontainer:active .appearonimghover {
-  opacity: 1;
-  display: block;
+main #mainContent #images .imgcontainer.selectedformove {
+  background-color: gray;
 }
-@media (min-width: 768px) {
+main #mainContent #images .imgcontainer.selectedformove img {
+  opacity: 0.5;
+}
+@media (max-width: 768px) {
+  main #mainContent #images .imgcontainer.imageclicked .appearonimghover {
+    opacity: 1;
+    display: block;
+    z-index: 1;
+    pointer-events: all;
+  }
+}
+@media (min-width: 769px) {
+  main #mainContent #images .imgcontainer:hover .appearonimghover {
+    opacity: 1;
+    display: block;
+    z-index: 1;
+    pointer-events: all;
+  }
+}
+@media (min-width: 769px) {
   main #mainContent #images {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
