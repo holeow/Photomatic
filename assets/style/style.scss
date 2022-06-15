@@ -33,7 +33,7 @@ header{
         stroke-linejoin: round;
         fill: none;
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
             display: none;
         }
     }
@@ -83,7 +83,7 @@ main{
         &.mobileHide{
             left:-190px;
 
-            @media(min-width: 768px){
+            @media(min-width: 769px){
                 left: 0px;
             }
         }
@@ -99,7 +99,7 @@ main{
 
         width: 100%;
 
-        @media (min-width : 768px){
+        @media (min-width : 769px){
             width: calc(100% - 180px);
             position: relative;
             left: 180px;
@@ -130,6 +130,20 @@ main{
             stroke-linejoin: round;
             fill: none;
             }
+            
+            #featherput {
+           
+                cursor: pointer;
+    
+                height: 75%;
+                position: relative;
+                top: 12.5%;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                fill: none;
+                }
         }
 
         #images{
@@ -142,16 +156,155 @@ main{
             left: 5%;
             row-gap: 15px;
 
-            img{
-                width: 100% ;
-                @media (min-width : 768px){
-                    padding : 10px 10px 10px 10px;
-                    max-width: 450px;
+            .imgcontainer{
+
+
+                position: relative;
+
+                .appearonimghover{
+                    opacity: 0;
+                    transition: opacity 0.5s;
+
+                    
                 }
-                
+                .featherdeleteimage {
+                position: absolute;
+                    right: 24px;
+                    bottom: 28px;
+                    width: 24px;
+                    height: 24px;
+                    stroke: white;
+                    stroke-width: 2;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    fill: none;
+                    cursor: pointer;
+                    z-index: -1;
+                    pointer-events: none;
+                    
+                }
+                .featherdeleteimage2 {
+                    position: absolute;
+                        right: 24px;
+                        bottom: 28px;
+                        width: 24px;
+                        height: 24px;
+                        stroke: black;
+                        stroke-width: 4;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        fill: none;
+                        z-index: -1;
+
+                       
+                    }
+
+                .feathermaximizeimage {
+                    position: absolute;
+                        right: 24px;
+                        top: 16px;
+                        width: 24px;
+                        height: 24px;
+                        stroke: white;
+                        stroke-width: 2;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        fill: none;
+                        cursor: pointer;
+                        z-index: -1;
+                    }
+                    .feathermaximizeimage2 {
+                        position: absolute;
+                            right: 24px;
+                            top: 16px;
+                            width: 24px;
+                            height: 24px;
+                            stroke: black;
+                            stroke-width: 4;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                            fill: none;
+                            z-index: -1;
+
+                        }
+                .feathermoveimage {
+                    position: absolute;
+                        left: 24px;
+                        top: 16px;
+                        width: 24px;
+                        height: 24px;
+                        stroke: white;
+                        stroke-width: 2;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        fill: none;
+                        cursor: pointer;
+
+                        z-index: -1;
+                    }
+
+                    .feathermoveimage2 {
+                        position: absolute;
+                            left: 24px;
+                            top: 16px;
+                            width: 24px;
+                            height: 24px;
+                            stroke: black;
+                            stroke-width: 4;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                            fill: none;
+                            z-index: -1;
+                        }
+                img{
+                    width: 100% ;
+                    opacity: 1;
+                    
+                    @media (min-width : 769px){
+                        padding : 10px 10px 10px 10px;
+                        max-width: 450px;
+                    }
+                    
+                    
+                }
+
+                &.selectedformove{
+                    background-color: gray;
+
+                    img{
+                        opacity: 0.5;
+                    }
+                }
+
+                &.imageclicked{
+                    @media (max-width: 768px){
+                        .appearonimghover {
+                            opacity: 1;
+                            display: block;
+                            z-index: 1;
+                            pointer-events: all;
+                            }
+                    }
+                }
             }
 
-            @media (min-width : 768px){
+            .imgcontainer:hover{
+                @media (min-width: 769px) {
+                    .appearonimghover {
+                        opacity: 1;
+                        display: block;
+                        z-index: 1;
+                        pointer-events: all;
+                        }
+                }
+                
+                    
+            }
+            
+
+           
+
+            @media (min-width : 769px){
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
@@ -241,4 +394,55 @@ main{
         cursor: pointer;
     }
 
+}
+
+.transparent{
+    opacity: 0;
+}
+
+#imgScreen{
+    transition: opacity 0.8s;
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+
+    z-index: 5000;
+    &.isHidden{
+        display: none;
+    }
+    
+    img{
+        width: 100%;
+        align-self: center;
+        justify-self: center;
+    }
+    
+
+    .feathercloseimage {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 10px;;
+        stroke: white;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        cursor: pointer;
+    }
+    .feathercloseimage2 {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 10px;;
+        stroke: black;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
 }

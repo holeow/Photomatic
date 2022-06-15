@@ -29,7 +29,7 @@ header .featherMenu {
   stroke-linejoin: round;
   fill: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   header .featherMenu {
     display: none;
   }
@@ -70,7 +70,7 @@ main #leftNavBar {
 main #leftNavBar.mobileHide {
   left: -190px;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   main #leftNavBar.mobileHide {
     left: 0px;
   }
@@ -82,7 +82,7 @@ main #leftNavBar hr {
 main #mainContent {
   width: 100%;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   main #mainContent {
     width: calc(100% - 180px);
     position: relative;
@@ -111,6 +111,17 @@ main #mainContent #miniMenu #featherUpload {
   stroke-linejoin: round;
   fill: none;
 }
+main #mainContent #miniMenu #featherput {
+  cursor: pointer;
+  height: 75%;
+  position: relative;
+  top: 12.5%;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
 main #mainContent #images {
   position: relative;
   top: 40px;
@@ -120,16 +131,128 @@ main #mainContent #images {
   left: 5%;
   row-gap: 15px;
 }
-main #mainContent #images img {
-  width: 100%;
+main #mainContent #images .imgcontainer {
+  position: relative;
 }
-@media (min-width: 768px) {
-  main #mainContent #images img {
+main #mainContent #images .imgcontainer .appearonimghover {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+main #mainContent #images .imgcontainer .featherdeleteimage {
+  position: absolute;
+  right: 24px;
+  bottom: 28px;
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  cursor: pointer;
+  z-index: -1;
+  pointer-events: none;
+}
+main #mainContent #images .imgcontainer .featherdeleteimage2 {
+  position: absolute;
+  right: 24px;
+  bottom: 28px;
+  width: 24px;
+  height: 24px;
+  stroke: black;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  z-index: -1;
+}
+main #mainContent #images .imgcontainer .feathermaximizeimage {
+  position: absolute;
+  right: 24px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  cursor: pointer;
+  z-index: -1;
+}
+main #mainContent #images .imgcontainer .feathermaximizeimage2 {
+  position: absolute;
+  right: 24px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  stroke: black;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  z-index: -1;
+}
+main #mainContent #images .imgcontainer .feathermoveimage {
+  position: absolute;
+  left: 24px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  cursor: pointer;
+  z-index: -1;
+}
+main #mainContent #images .imgcontainer .feathermoveimage2 {
+  position: absolute;
+  left: 24px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  stroke: black;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  z-index: -1;
+}
+main #mainContent #images .imgcontainer img {
+  width: 100%;
+  opacity: 1;
+}
+@media (min-width: 769px) {
+  main #mainContent #images .imgcontainer img {
     padding: 10px 10px 10px 10px;
     max-width: 450px;
   }
 }
-@media (min-width: 768px) {
+main #mainContent #images .imgcontainer.selectedformove {
+  background-color: gray;
+}
+main #mainContent #images .imgcontainer.selectedformove img {
+  opacity: 0.5;
+}
+@media (max-width: 768px) {
+  main #mainContent #images .imgcontainer.imageclicked .appearonimghover {
+    opacity: 1;
+    display: block;
+    z-index: 1;
+    pointer-events: all;
+  }
+}
+@media (min-width: 769px) {
+  main #mainContent #images .imgcontainer:hover .appearonimghover {
+    opacity: 1;
+    display: block;
+    z-index: 1;
+    pointer-events: all;
+  }
+}
+@media (min-width: 769px) {
   main #mainContent #images {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -203,4 +326,51 @@ main #mainContent .inWindow .buttons {
 .folderPanel .featherfolderright {
   margin-right: 4px;
   cursor: pointer;
+}
+
+.transparent {
+  opacity: 0;
+}
+
+#imgScreen {
+  transition: opacity 0.8s;
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background-color: black;
+  z-index: 5000;
+}
+#imgScreen.isHidden {
+  display: none;
+}
+#imgScreen img {
+  width: 100%;
+  align-self: center;
+  justify-self: center;
+}
+#imgScreen .feathercloseimage {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 10px;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  cursor: pointer;
+}
+#imgScreen .feathercloseimage2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 10px;
+  stroke: black;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }/*# sourceMappingURL=style.css.map */
