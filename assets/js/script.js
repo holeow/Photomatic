@@ -47,7 +47,22 @@ class Folder {
         let imgPanel = document.querySelector("#images");
         imgPanel.innerHTML = "";
         for (const img of this.photos) {
+
+
             imgPanel.appendChild(img.makeElement());
+        }
+        feather.replace();
+
+        let imgs = document.querySelectorAll(".imgcontainer");
+        for(const img of imgs) {
+            img.querySelector(".feathermaximizeimage").addEventListener("click",()=>{
+
+                let imgScreen = document.querySelector("#imgScreen");
+                imgScreen.querySelector( "img").src = img.photo.link;
+                imgScreen.classList.toggle("isHidden");
+                setTimeout(() => imgScreen.classList.toggle("transparent") ,1);
+                
+            });
         }
     }
 
@@ -141,9 +156,58 @@ class Photo {
      * @returns L'element img
      */
     makeElement() {
+
+        let div = document.createElement('div');
+        div.classList.add("imgcontainer");
+
+        let trash = document.createElement("i");
+        trash.setAttribute("data-feather", "trash-2");
+        trash.classList.add("featherdeleteimage");
+        trash.classList.add("appearonimghover");
+
+        let trash2 = document.createElement("i");
+        trash2.setAttribute("data-feather", "trash-2");
+        trash2.classList.add("featherdeleteimage2");
+        trash2.classList.add("appearonimghover");
+
+        let max = document.createElement("i");
+        max.setAttribute("data-feather", "maximize-2");
+        max.classList.add("feathermaximizeimage");
+        max.classList.add("appearonimghover");
+
+        let max2 = document.createElement("i");
+        max2.setAttribute("data-feather", "maximize-2");
+        max2.classList.add("feathermaximizeimage2");
+        max2.classList.add("appearonimghover");
+
+        let move = document.createElement("i");
+        move.setAttribute("data-feather", "move");
+        move.classList.add("feathermoveimage");
+        move.classList.add("appearonimghover");
+
+        let move2 = document.createElement("i");
+        move2.setAttribute("data-feather", "move");
+        move2.classList.add("feathermoveimage2");
+        move2.classList.add("appearonimghover");
+
+
         let l = document.createElement("img");
         l.src = this.link;
-        return l;
+        div.appendChild(l);
+        
+        div.appendChild(trash2);
+        div.appendChild(max2);
+        div.appendChild(move2);
+        div.appendChild(trash);
+        div.appendChild(max);
+        div.appendChild(move);
+        
+
+
+        div.photo = this;
+
+
+        return div;
     }
 }
 
@@ -213,6 +277,11 @@ imageUploader.querySelector("input").addEventListener("keyup", event => {
     if (event.key === "Enter") okayUploadImage();
 });
 
+document.querySelector(".feathercloseimage").addEventListener("click", () => {
+let imgScreen = document.querySelector("#imgScreen");
+imgScreen.classList.toggle("transparent");
+setTimeout(()=> imgScreen.classList.toggle("isHidden"), 800);
+});
 
 
 //? Fin de la gestion des boutons
