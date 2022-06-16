@@ -132,6 +132,9 @@ main #mainContent #images {
   row-gap: 15px;
 }
 main #mainContent #images .imgcontainer {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
 }
 @media (min-width: 769px) {

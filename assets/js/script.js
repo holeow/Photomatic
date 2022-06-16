@@ -107,7 +107,9 @@ function putImages(){
         else{
           let index=  img[0].photos.findIndex(a=> img[1]== a);
           img[0].photos.splice(index,1);
-          viewModel.currentFolder.photos.push(img[1]);
+          img[1].callDelete();
+          viewModel.currentFolder.photos.push(img[1])
+          viewModel.currentFolder.callAdd(img[1]);
         }
     }
     viewModel.selectedMovePhotos = [];
@@ -116,6 +118,7 @@ function putImages(){
 function okayUploadImage() {
     let photo = new Photo(0, 0, 0, null, imageUploader.querySelector("input").value);
     viewModel.currentFolder.photos.push(photo);
+    viewModel.currentFolder.callAdd(photo);
     viewModel.displayImages(viewModel.currentFolder);
     
     closeAllWindows();
