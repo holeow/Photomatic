@@ -54,7 +54,7 @@ class Photo {
      * @param {number} seed un entier qui sert à choisir l'image aléatoire
      * @param {number} width un entier pour la largeur de l'image
      * @param {number} height  un entier pour la hauteur de l'image
-     * @param {string} subject le sujet de l'image pour le choix aléatoire, plusieur sujets peuvent etre choisis si ils sont spéarés par une virgule
+     * @param {string} subject le sujet de l'image pour le choix aléatoire, plusieur sujets peuvent etre choisis si ils sont séparés par une virgule
      * @param {string} forceImg Un lien d'image. Si fourni, l'image ne sera pas aléatoire et le reste des arguments est ignoré.
      */
     constructor(seed, width, height, subject, forceImg) {

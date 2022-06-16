@@ -160,6 +160,10 @@ main{
 
 
                 position: relative;
+                @media (min-width : 769px){
+                   
+                    max-width: 450px;
+                }
 
                 .appearonimghover{
                     opacity: 0;

@@ -1,30 +1,36 @@
-//?? Test folders
-let mainFolder = new Folder("root", "cat", null);
-mainFolder.generatePhotos(12, 480, 270);
 
-let boat = new Folder("Boats", "boat", mainFolder);
-let eiffel = new Folder("Eiffel tower", "eiffel,tower", mainFolder);
-let dogs = new Folder("Dogs", "dog", mainFolder);
+let viewModel = new NormalViewModel();
 
-let whiteDogs = new Folder("white ones", "dog,white", dogs);
+GenerateTestFolders();
 
-dogs.folders.push(whiteDogs);
-
-whiteDogs.generatePhotos(12, 480, 270);
-
-boat.generatePhotos(5, 480, 270);
-eiffel.generatePhotos(5, 480, 270);
-dogs.generatePhotos(5, 480, 270);
-
-mainFolder.folders.push(boat);
-
-mainFolder.folders.push(eiffel);
-mainFolder.folders.push(dogs);
-
-NormalViewModel.openFolder(mainFolder);
-//mainFolder.openFolder();
-//? end of test folders
-
+async function GenerateTestFolders(){
+    let mainFolder = new Folder("root", "cat", null);
+    mainFolder.generatePhotos(12, 480, 270);
+    
+    let boat = new Folder("Boats", "boat", mainFolder);
+    let eiffel = new Folder("Eiffel tower", "eiffel,tower", mainFolder);
+    let dogs = new Folder("Dogs", "dog", mainFolder);
+    
+    let whiteDogs = new Folder("white ones", "dog,white", dogs);
+    
+    dogs.folders.push(whiteDogs);
+    
+    whiteDogs.generatePhotos(12, 480, 270);
+    
+    boat.generatePhotos(5, 480, 270);
+    eiffel.generatePhotos(5, 480, 270);
+    dogs.generatePhotos(5, 480, 270);
+    
+    mainFolder.folders.push(boat);
+    
+    mainFolder.folders.push(eiffel);
+    mainFolder.folders.push(dogs);
+    
+    let jsonFolder = await viewModel.makeJsonPlaceholderFolder(16,mainFolder);
+    
+    mainFolder.folders.push(jsonFolder);
+    viewModel.openFolder(mainFolder);
+}
 
 
 
@@ -34,7 +40,7 @@ NormalViewModel.openFolder(mainFolder);
 
 //?? Gestion des boutons
 document.querySelector("#HomeButton").addEventListener("click", () => {
-    NormalViewModel.openFolder(mainFolder);
+    viewModel.openFolder(mainFolder);
     
 });
 
@@ -93,24 +99,24 @@ function putImages(){
         container.classList.toggle("selectedformove",false);
     }
 
-    for(const img of NormalViewModel.selectedMovePhotos){
-        if(img[0] == NormalViewModel.currentFolder){
+    for(const img of viewModel.selectedMovePhotos){
+        if(img[0] == viewModel.currentFolder){
             
             continue;
         }
         else{
           let index=  img[0].photos.findIndex(a=> img[1]== a);
           img[0].photos.splice(index,1);
-          NormalViewModel.currentFolder.photos.push(img[1]);
+          viewModel.currentFolder.photos.push(img[1]);
         }
     }
-    NormalViewModel.selectedMovePhotos = [];
+    viewModel.selectedMovePhotos = [];
 }
 
 function okayUploadImage() {
     let photo = new Photo(0, 0, 0, null, imageUploader.querySelector("input").value);
-    NormalViewModel.currentFolder.photos.push(photo);
-    NormalViewModel.displayImages(NormalViewModel.currentFolder);
+    viewModel.currentFolder.photos.push(photo);
+    viewModel.displayImages(viewModel.currentFolder);
     
     closeAllWindows();
 }
@@ -141,11 +147,11 @@ function okayCreateFolder() {
 
     if (input.length > 0) {
 
-        let currentFolder = NormalViewModel.currentFolder;
+        let currentFolder = viewModel.currentFolder;
         let folder = new Folder(input, null, currentFolder);
 
         currentFolder.folders.push(folder);
-        NormalViewModel.openFolder(currentFolder);
+        viewModel.openFolder(currentFolder);
         
         createFolderClick();
         closeAllWindows();

@@ -134,6 +134,11 @@ main #mainContent #images {
 main #mainContent #images .imgcontainer {
   position: relative;
 }
+@media (min-width: 769px) {
+  main #mainContent #images .imgcontainer {
+    max-width: 450px;
+  }
+}
 main #mainContent #images .imgcontainer .appearonimghover {
   opacity: 0;
   transition: opacity 0.5s;
